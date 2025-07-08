@@ -2,45 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Panorama Capture">
-    
-    <title>Panorama Capture AR</title>
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUGFub3JhbWEgQ2FwdHVyZSBBUiIsInNob3J0X25hbWUiOiJQYW5vQ2FwdHVyZSIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTV6TUNVdFlYRTlJakl3TURBaFpXUmhkR1Z0WVM1aGRIUnlhV0oxZEdWeklpQjJaVzF0YWE0MVBTSTBOVEFnTkRVd0lpQjNhV1IwYUQwaU5EVTBJAU5HVnBaMmgwUFNJME5UQWlBTjVzZVQ1V2V5SmNhR2x1WjNNSVdXdVhYQ2hwWkdsMU5qVXRPRGhCZUZkYWVYVlVUM0p0S3lNNWFrOVBjQ05KT1c4aElHNVNJQzF6SWtsYWFWQlpLVVJ2UzFoaGRXbDNJQ1N6Y1dKU0FXVlZUNXowWkdOa0l4WDNJNnREYkZSeFlHdGdaV1VoaVNWRkgyTnNWaFprUWkwM1VURnpZVW84TDNOMlp6ND0iLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XSwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzAwMDAwMCIsInRoZW1lX2NvbG9yIjoiIzAwMDAwMCIsInN0YXJ0X3VybCI6Ii8ifQ==">
-    
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <meta name="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiB2aWV3Qm94PSIwIDAgMTAyNCAxMDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTAyNCIgaGVpZ2h0PSIxMDI0IiByeD0iMjI5IiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMF8xKSIvPgo8ZGVmcz4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyXzBfMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMTAyNCIgeTI9IjEwMjQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzZCNzNGRiIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM5Q0E3RkYiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K">
+    <title>360° Photosphere Capture</title>
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIjM2MMKwIFBob3Rvc3BoZXJlIENhcHR1cmUiLAogICJzaG9ydF9uYW1lIjogIlBob3Rvc3BoZXJlIiwKICAiZGVzY3JpcHRpb24iOiAiQVIgZW5hYmxlZCAzNjDCsCBwaG90b3NwaGVyZSBjYXB0dXJlIGFwcCIsCiAgInN0YXJ0X3VybCI6ICIvIiwKICAiZGlzcGxheSI6ICJmdWxsc2NyZWVuIiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJ0aGVtZV9jb2xvciI6ICIjMkEyQTJBIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMkEyQTJBIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTWpVMklpQm9aV2xuYUhROUlqSTFOaUlnZG1sbGQwSnZlRDBpTUNBd0lESTFOaUF5TlRZaUlHWnBiR3c5SW01dmJtVWlJSGh0Ykc1eklEMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lQZ289IiwKICAgICAgInNpemVzIjogIjI1NngyNTYiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
     
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            min-height: 100vh;
-            overflow: hidden;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             color: white;
+            overflow: hidden;
+            height: 100vh;
+            user-select: none;
         }
 
         .container {
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            height: 100vh;
             position: relative;
         }
 
-        /* Main Menu */
-        .main-menu {
+        .home-screen {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -50,59 +42,62 @@
             padding: 20px;
         }
 
-        .title {
-            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+        .app-title {
+            background: linear-gradient(135deg, #6B73FF 0%, #9CA7FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(79, 172, 254, 0.3);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .app-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            font-weight: 300;
         }
 
         .version {
-            color: #888;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
             font-size: 0.9rem;
-            margin-bottom: 40px;
+            opacity: 0.6;
         }
 
         .start-button {
-            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(135deg, #6B73FF 0%, #9CA7FF 100%);
             border: none;
-            padding: 20px 40px;
             border-radius: 50px;
-            color: white;
+            padding: 20px 40px;
             font-size: 1.2rem;
             font-weight: 600;
+            color: white;
             cursor: pointer;
-            box-shadow: 0 8px 32px rgba(79, 172, 254, 0.3);
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 8px 32px rgba(107, 115, 255, 0.3);
         }
 
         .start-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(79, 172, 254, 0.4);
+            box-shadow: 0 12px 48px rgba(107, 115, 255, 0.4);
         }
 
         .start-button:active {
             transform: translateY(0);
         }
 
-        /* AR Capture Interface */
-        .ar-interface {
+        .capture-screen {
             display: none;
             position: relative;
             height: 100vh;
-            overflow: hidden;
+            background: #000;
         }
 
-        .camera-view {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .camera-feed {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -117,96 +112,158 @@
             pointer-events: none;
         }
 
-        /* Crosshairs */
-        .crosshairs {
+        .crosshair {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 60px;
             height: 60px;
-            border: 2px solid white;
+            border: 3px solid white;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            transition: all 0.2s ease;
+            opacity: 0.8;
+            pointer-events: none;
         }
 
-        .crosshairs.active {
-            border-color: #00ff00;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+        .guidance-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #4285f4;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: auto;
         }
 
-        /* UI Controls */
-        .ar-controls {
+        .guidance-dot.captured {
+            background: #34a853;
+            transform: scale(0.8);
+        }
+
+        .guidance-dot.active {
+            background: #ff9800;
+            transform: scale(1.3);
+            box-shadow: 0 0 20px #ff9800;
+        }
+
+        .controls {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 20px;
-            z-index: 1000;
+            align-items: center;
         }
 
         .control-button {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .control-button:hover {
-            border-color: #4facfe;
-            background: rgba(79, 172, 254, 0.2);
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
-        /* Progress Indicator */
-        .progress-container {
+        .capture-button {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6B73FF 0%, #9CA7FF 100%);
+        }
+
+        .status-bar {
             position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            right: 0;
             background: rgba(0, 0, 0, 0.7);
-            padding: 15px 25px;
-            border-radius: 25px;
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
         }
 
-        .progress-text {
-            color: white;
-            font-size: 1rem;
-            text-align: center;
+        .progress-ring {
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
-        /* Processing Screen */
+        .progress-ring-circle {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.3);
+            stroke-width: 4;
+        }
+
+        .progress-ring-progress {
+            fill: none;
+            stroke: #6B73FF;
+            stroke-width: 4;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .captured-image {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 4px;
+            opacity: 0.8;
+            transform: scale(0.8);
+            object-fit: cover;
+            pointer-events: none;
+        }
+
         .processing-screen {
             display: none;
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            z-index: 2000;
+            z-index: 1000;
+        }
+
+        .processing-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
         .spinner {
             width: 60px;
             height: 60px;
-            border: 4px solid rgba(79, 172, 254, 0.3);
-            border-top: 4px solid #4facfe;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #6B73FF;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 20px;
         }
 
         @keyframes spin {
@@ -214,532 +271,205 @@
             100% { transform: rotate(360deg); }
         }
 
-        .processing-text {
-            color: white;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-
-        /* Preview Mode */
-        .preview-screen {
+        .viewer-screen {
             display: none;
-            height: 100vh;
             position: relative;
+            height: 100vh;
         }
 
-        .panorama-viewer {
+        #photosphere-viewer {
             width: 100%;
             height: 100%;
         }
 
-        .preview-controls {
+        .viewer-controls {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 15px;
-            z-index: 1000;
         }
 
-        /* Hidden elements */
         .hidden {
             display: none !important;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .title {
-                font-size: 2.2rem;
-            }
-            
-            .start-button {
-                padding: 15px 30px;
-                font-size: 1rem;
-            }
-            
-            .control-button {
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
+        .visible {
+            display: flex !important;
         }
 
-        /* Captured image thumbnails */
-        .captured-image {
+        .instruction-text {
             position: absolute;
-            width: 120px;
-            height: 90px;
-            border: 2px solid #4facfe;
-            border-radius: 8px;
-            opacity: 0.8;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 280px;
             pointer-events: none;
-            transition: all 0.3s ease;
-        }
-
-        .captured-image.recent {
-            border-color: #00ff00;
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Main Menu Screen -->
-        <div class="main-menu" id="mainMenu">
-            <h1 class="title">Panorama Capture</h1>
-            <div class="version">Version 4.0.0</div>
-            <button class="start-button" onclick="startCapture()">Start AR Capture</button>
+        <!-- Home Screen -->
+        <div class="home-screen" id="homeScreen">
+            <h1 class="app-title">360° Photosphere</h1>
+            <p class="app-subtitle">AR-Enhanced Panoramic Photography</p>
+            <button class="start-button" onclick="startCapture()">Start Capture</button>
+            <div class="version">v4.2.0</div>
         </div>
 
-        <!-- AR Capture Interface -->
-        <div class="ar-interface" id="arInterface">
-            <video class="camera-view" id="cameraVideo" autoplay playsinline muted></video>
-            <canvas class="ar-overlay" id="arCanvas"></canvas>
+        <!-- Capture Screen -->
+        <div class="capture-screen" id="captureScreen">
+            <video class="camera-feed" id="cameraFeed" autoplay playsinline></video>
             
-            <div class="crosshairs" id="crosshairs"></div>
-            
-            <div class="progress-container">
-                <div class="progress-text" id="progressText">0 / 51 images captured</div>
+            <div class="ar-overlay" id="arOverlay">
+                <div class="crosshair"></div>
+                <div class="instruction-text" id="instructionText">Point the camera at the orange dot</div>
+                
+                <!-- Progress Ring -->
+                <svg class="progress-ring" id="progressRing">
+                    <circle class="progress-ring-circle" cx="60" cy="60" r="54"></circle>
+                    <circle class="progress-ring-progress" id="progressCircle" cx="60" cy="60" r="54" 
+                            stroke-dasharray="339.292" stroke-dashoffset="339.292"></circle>
+                </svg>
             </div>
-            
-            <div class="ar-controls">
-                <button class="control-button" onclick="toggleAutoCapture()" id="autoToggle">Auto: ON</button>
-                <button class="control-button" onclick="captureManual()">Capture</button>
-                <button class="control-button" onclick="finishCapture()">Finish</button>
+
+            <div class="status-bar">
+                <span id="captureCount">0/12 captured</span>
+                <span id="compassHeading">Compass: 0°</span>
+            </div>
+
+            <div class="controls">
+                <button class="control-button" onclick="goHome()" title="Home">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                </button>
+                <button class="control-button capture-button" onclick="capturePhoto()" title="Capture">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="12" r="3.2"/>
+                        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                    </svg>
+                </button>
+                <button class="control-button" onclick="completeCapture()" title="Complete">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                </button>
             </div>
         </div>
 
         <!-- Processing Screen -->
         <div class="processing-screen" id="processingScreen">
+            <div class="processing-text">Stitching panorama...</div>
             <div class="spinner"></div>
-            <div class="processing-text" id="processingText">Processing panorama...</div>
         </div>
 
-        <!-- Preview Screen -->
-        <div class="preview-screen" id="previewScreen">
-            <div class="panorama-viewer" id="panoramaViewer"></div>
-            <div class="preview-controls">
-                <button class="control-button" onclick="savePanorama()">Save Image</button>
-                <button class="control-button" onclick="startNew()">New Capture</button>
+        <!-- Viewer Screen -->
+        <div class="viewer-screen" id="viewerScreen">
+            <div id="photosphere-viewer"></div>
+            <div class="viewer-controls">
+                <button class="control-button" onclick="savePhoto()" title="Save">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
+                    </svg>
+                </button>
+                <button class="control-button" onclick="goHome()" title="New Capture">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- Include Three.js for 3D graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Include Photo Sphere Viewer for panorama display -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photo-sphere-viewer/4.8.1/photo-sphere-viewer.min.js"></script>
+
     <script>
         // App State
-        let appState = {
-            currentScreen: 'menu',
-            isCapturing: false,
-            autoCapture: true,
-            capturedImages: [],
-            currentTargetIndex: 0,
-            deviceOrientation: { alpha: 0, beta: 0, gamma: 0 },
-            cameraStream: null,
-            scene: null,
-            camera: null,
-            renderer: null,
-            targetSphere: null,
-            capturedSphere: null,
-            targetPositions: [],
-            lastCaptureTime: 0,
-            orientationSmoothing: {
-                alpha: 0,
-                beta: 0,
-                gamma: 0,
-                smoothFactor: 0.1
-            }
-        };
+        let currentScreen = 'home';
+        let cameraStream = null;
+        let capturedImages = [];
+        let guidanceDots = [];
+        let currentDotIndex = 0;
+        let deviceOrientation = { alpha: 0, beta: 0, gamma: 0 };
+        let photosphereViewer = null;
 
-        // Generate 51 target positions for photosphere capture
-        function generateTargetPositions() {
-            const positions = [];
-            
-            // Generate points in a spherical pattern
-            // 6 levels of latitude + poles
-            const latLevels = [
-                { lat: 0, count: 8 },      // Equator - 8 points
-                { lat: 30, count: 8 },     // +30° - 8 points  
-                { lat: -30, count: 8 },    // -30° - 8 points
-                { lat: 60, count: 6 },     // +60° - 6 points
-                { lat: -60, count: 6 },    // -60° - 6 points
-                { lat: 75, count: 4 },     // +75° - 4 points
-                { lat: -75, count: 4 },    // -75° - 4 points
-                { lat: 90, count: 1 },     // North pole - 1 point
-                { lat: -90, count: 1 },    // South pole - 1 point
-                { lat: 45, count: 4 },     // +45° - 4 points
-                { lat: -45, count: 4 },    // -45° - 4 points
-            ];
+        // Sphere positions for guidance dots (12 positions covering most of sphere)
+        const dotPositions = [
+            { pitch: 0, yaw: 0, label: 'North' },
+            { pitch: 0, yaw: 60, label: 'NE' },
+            { pitch: 0, yaw: 120, label: 'SE' },
+            { pitch: 0, yaw: 180, label: 'South' },
+            { pitch: 0, yaw: 240, label: 'SW' },
+            { pitch: 0, yaw: 300, label: 'NW' },
+            { pitch: 45, yaw: 0, label: 'Up N' },
+            { pitch: 45, yaw: 180, label: 'Up S' },
+            { pitch: -45, yaw: 0, label: 'Down N' },
+            { pitch: -45, yaw: 180, label: 'Down S' },
+            { pitch: 90, yaw: 0, label: 'Zenith' },
+            { pitch: -90, yaw: 0, label: 'Nadir' }
+        ];
 
-            latLevels.forEach(level => {
-                for (let i = 0; i < level.count; i++) {
-                    const lon = (360 / level.count) * i;
-                    positions.push({
-                        lat: level.lat,
-                        lon: lon,
-                        captured: false
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            setupServiceWorker();
+            checkWebXRSupport();
+        });
+
+        // Service Worker for PWA functionality
+        function setupServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                const swCode = `
+                    const CACHE_NAME = 'photosphere-v4.2.0';
+                    const urlsToCache = ['/'];
+                    
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.addAll(urlsToCache))
+                        );
                     });
-                }
-            });
-
-            return positions.slice(0, 51); // Ensure exactly 51 positions
-        }
-
-        // Initialize Three.js AR overlay
-        function initThreeJS() {
-            try {
-                const canvas = document.getElementById('arCanvas');
-                const scene = new THREE.Scene();
-                
-                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-                camera.position.set(0, 0, 0);
-                
-                const renderer = new THREE.WebGLRenderer({ 
-                    canvas: canvas, 
-                    alpha: true,
-                    antialias: true 
-                });
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.setClearColor(0x000000, 0);
-
-                // Create target sphere (invisible sphere with dots)
-                const sphereGeometry = new THREE.SphereGeometry(10, 32, 16);
-                const sphereMaterial = new THREE.MeshBasicMaterial({ 
-                    transparent: true, 
-                    opacity: 0 
-                });
-                const targetSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-                scene.add(targetSphere);
-
-                // Create captured image sphere
-                const capturedSphere = new THREE.Group();
-                scene.add(capturedSphere);
-
-                // Add target dots
-                appState.targetPositions.forEach((pos, index) => {
-                    const dotGeometry = new THREE.SphereGeometry(0.15, 8, 6);
-                    const dotMaterial = new THREE.MeshBasicMaterial({ 
-                        color: pos.captured ? 0x00ff00 : 0x4facfe,
-                        transparent: true,
-                        opacity: 0.8
+                    
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => response || fetch(event.request))
+                        );
                     });
-                    const dot = new THREE.Mesh(dotGeometry, dotMaterial);
-                    
-                    // Convert lat/lon to 3D coordinates
-                    const phi = (90 - pos.lat) * (Math.PI / 180);
-                    const theta = pos.lon * (Math.PI / 180);
-                    
-                    dot.position.x = 10 * Math.sin(phi) * Math.cos(theta);
-                    dot.position.y = 10 * Math.cos(phi);
-                    dot.position.z = 10 * Math.sin(phi) * Math.sin(theta);
-                    
-                    dot.userData = { index: index, position: pos };
-                    targetSphere.add(dot);
-                });
-
-                appState.scene = scene;
-                appState.camera = camera;
-                appState.renderer = renderer;
-                appState.targetSphere = targetSphere;
-                appState.capturedSphere = capturedSphere;
-
-                animate();
-                return true;
-            } catch (error) {
-                console.error('Three.js initialization failed:', error);
-                return false;
+                `;
+                
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl).catch(console.error);
             }
         }
 
-        // Animation loop
-        function animate() {
-            try {
-                requestAnimationFrame(animate);
-                
-                if (appState.currentScreen === 'capture' && appState.renderer && appState.scene && appState.camera) {
-                    updateCameraOrientation();
-                    checkTargetAlignment();
-                    appState.renderer.render(appState.scene, appState.camera);
-                }
-            } catch (error) {
-                console.error('Animation error:', error);
-                // Continue animation loop even on errors
+        // Check WebXR support
+        function checkWebXRSupport() {
+            if ('xr' in navigator) {
+                navigator.xr.isSessionSupported('immersive-ar').then(supported => {
+                    console.log('WebXR AR supported:', supported);
+                }).catch(console.error);
             }
         }
 
-        // Smooth device orientation to prevent glitches
-        function smoothOrientation(newOrientation) {
-            const { smoothFactor } = appState.orientationSmoothing;
-            
-            // Handle alpha wraparound (0-360 degrees)
-            let alphaDiff = newOrientation.alpha - appState.orientationSmoothing.alpha;
-            if (alphaDiff > 180) alphaDiff -= 360;
-            if (alphaDiff < -180) alphaDiff += 360;
-            
-            appState.orientationSmoothing.alpha += alphaDiff * smoothFactor;
-            appState.orientationSmoothing.beta += (newOrientation.beta - appState.orientationSmoothing.beta) * smoothFactor;
-            appState.orientationSmoothing.gamma += (newOrientation.gamma - appState.orientationSmoothing.gamma) * smoothFactor;
-            
-            // Normalize alpha to 0-360 range
-            if (appState.orientationSmoothing.alpha < 0) appState.orientationSmoothing.alpha += 360;
-            if (appState.orientationSmoothing.alpha >= 360) appState.orientationSmoothing.alpha -= 360;
-            
-            return appState.orientationSmoothing;
-        }
-
-        // Update camera orientation based on device orientation
-        function updateCameraOrientation() {
-            const orientation = smoothOrientation(appState.deviceOrientation);
-            
-            // Convert device orientation to camera rotation
-            const alpha = orientation.alpha * (Math.PI / 180); // Z axis (compass)
-            const beta = orientation.beta * (Math.PI / 180);   // X axis (tilt front/back)  
-            const gamma = orientation.gamma * (Math.PI / 180); // Y axis (tilt left/right)
-            
-            // Apply rotations (order matters!)
-            appState.camera.rotation.set(0, 0, 0);
-            appState.camera.rotateZ(-alpha);
-            appState.camera.rotateX(-beta);
-            appState.camera.rotateY(-gamma);
-        }
-
-        // Check if crosshairs are aligned with any target
-        function checkTargetAlignment() {
-            try {
-                const crosshairs = document.getElementById('crosshairs');
-                let aligned = false;
-                
-                // Fallback if Three.js is not working
-                if (!appState.scene || !appState.camera) {
-                    return;
-                }
-                
-                // Get the center of the screen in world coordinates
-                const raycaster = new THREE.Raycaster();
-                raycaster.setFromCamera(new THREE.Vector2(0, 0), appState.camera);
-                
-                // Check alignment with uncaptured targets
-                appState.targetPositions.forEach((pos, index) => {
-                    if (!pos.captured && appState.targetSphere && appState.targetSphere.children[index]) {
-                        const targetMesh = appState.targetSphere.children[index];
-                        const distance = raycaster.ray.distanceToPoint(targetMesh.position);
-                        
-                        if (distance < 1.5) { // Alignment threshold
-                            aligned = true;
-                            appState.currentTargetIndex = index;
-                            
-                            // Auto capture if enabled
-                            if (appState.autoCapture && Date.now() - appState.lastCaptureTime > 1000) {
-                                captureImage();
-                            }
-                        }
-                    }
-                });
-                
-                // Update crosshairs appearance
-                if (aligned) {
-                    crosshairs.classList.add('active');
-                } else {
-                    crosshairs.classList.remove('active');
-                }
-            } catch (error) {
-                console.warn('Target alignment check error:', error);
-            }
-        }
-
-        // Capture image at current orientation
-        async function captureImage() {
-            if (!appState.isCapturing) return;
-            
-            const video = document.getElementById('cameraVideo');
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            
-            // Handle orientation and capture
-            ctx.save();
-            
-            // Rotate canvas based on device orientation for proper image orientation
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            ctx.translate(centerX, centerY);
-            
-            // Apply rotation to fix orientation issues mentioned in requirements
-            ctx.rotate(0); // Start with no rotation, adjust based on testing
-            ctx.translate(-centerX, -centerY);
-            
-            ctx.drawImage(video, 0, 0);
-            ctx.restore();
-            
-            const imageData = canvas.toDataURL('image/jpeg', 0.8);
-            
-            // Mark target as captured
-            const targetPos = appState.targetPositions[appState.currentTargetIndex];
-            targetPos.captured = true;
-            
-            // Update target dot color
-            const targetMesh = appState.targetSphere.children[appState.currentTargetIndex];
-            targetMesh.material.color.setHex(0x00ff00);
-            
-            // Add captured image to scene
-            addCapturedImageToScene(imageData, targetPos);
-            
-            // Store image data
-            appState.capturedImages.push({
-                data: imageData,
-                position: targetPos,
-                timestamp: Date.now(),
-                orientation: { ...appState.deviceOrientation }
-            });
-            
-            appState.lastCaptureTime = Date.now();
-            updateProgress();
-        }
-
-        // Add captured image as plane in 3D space
-        function addCapturedImageToScene(imageData, position) {
-            const loader = new THREE.TextureLoader();
-            loader.load(imageData, (texture) => {
-                // Create plane geometry for the image
-                const aspectRatio = 4/3; // Typical camera aspect ratio
-                const planeGeometry = new THREE.PlaneGeometry(2, 2/aspectRatio);
-                const planeMaterial = new THREE.MeshBasicMaterial({ 
-                    map: texture,
-                    transparent: true,
-                    opacity: 0.9,
-                    side: THREE.DoubleSide
-                });
-                
-                const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-                
-                // Position the plane at the target location
-                const phi = (90 - position.lat) * (Math.PI / 180);
-                const theta = position.lon * (Math.PI / 180);
-                
-                plane.position.x = 8 * Math.sin(phi) * Math.cos(theta);
-                plane.position.y = 8 * Math.cos(phi);
-                plane.position.z = 8 * Math.sin(phi) * Math.sin(theta);
-                
-                // Orient plane to face the center
-                plane.lookAt(0, 0, 0);
-                
-                // Add slight intersection for overlap effect
-                plane.position.multiplyScalar(0.95);
-                
-                appState.capturedSphere.add(plane);
-                
-                // Add recent capture highlighting
-                plane.material.emissive.setHex(0x004400);
-                setTimeout(() => {
-                    plane.material.emissive.setHex(0x000000);
-                }, 2000);
-            });
-        }
-
-        // Manual capture button
-        function captureManual() {
-            try {
-                // If no specific target is aligned, capture anyway and assign to next available target
-                if (appState.currentTargetIndex < 0 || appState.targetPositions[appState.currentTargetIndex].captured) {
-                    // Find next uncaptured target
-                    const nextTarget = appState.targetPositions.findIndex(pos => !pos.captured);
-                    if (nextTarget >= 0) {
-                        appState.currentTargetIndex = nextTarget;
-                    } else {
-                        alert('All targets have been captured!');
-                        return;
-                    }
-                }
-                captureImage();
-            } catch (error) {
-                console.error('Manual capture error:', error);
-                alert('Failed to capture image. Please try again.');
-            }
-        }
-
-        // Toggle auto capture
-        function toggleAutoCapture() {
-            appState.autoCapture = !appState.autoCapture;
-            document.getElementById('autoToggle').textContent = `Auto: ${appState.autoCapture ? 'ON' : 'OFF'}`;
-        }
-
-        // Update progress display
-        function updateProgress() {
-            const captured = appState.capturedImages.length;
-            const total = appState.targetPositions.length;
-            document.getElementById('progressText').textContent = `${captured} / ${total} images captured`;
-        }
-
-        // Start capture process
+        // Request permissions and start capture
         async function startCapture() {
             try {
-                // Request permissions first
-                await requestPermissions();
-                
-                // Initialize AR interface
-                appState.targetPositions = generateTargetPositions();
-                
-                // Initialize camera
-                await initCamera();
-                
-                // Initialize Three.js with error handling
-                const threeJSSuccess = initThreeJS();
-                if (!threeJSSuccess) {
-                    throw new Error('3D graphics initialization failed');
-                }
-                
-                // Initialize device orientation with error handling
-                const orientationSuccess = initDeviceOrientation();
-                if (!orientationSuccess) {
-                    console.warn('Device orientation not available, using manual controls only');
-                }
-                
-                // Switch to capture screen
-                document.getElementById('mainMenu').style.display = 'none';
-                document.getElementById('arInterface').style.display = 'block';
-                appState.currentScreen = 'capture';
-                appState.isCapturing = true;
-                
-            } catch (error) {
-                console.error('Start capture error:', error);
-                alert('Failed to start capture: ' + error.message);
-                
-                // Clean up on error
-                if (appState.cameraStream) {
-                    appState.cameraStream.getTracks().forEach(track => track.stop());
-                }
-                startNew();
-            }
-        }
-
-        // Request necessary permissions
-        async function requestPermissions() {
-            try {
-                // Request orientation permission (iOS 13+)
-                if (typeof DeviceOrientationEvent !== 'undefined' && 
-                    typeof DeviceOrientationEvent.requestPermission === 'function') {
-                    const permission = await DeviceOrientationEvent.requestPermission();
-                    if (permission !== 'granted') {
-                        throw new Error('Device orientation permission denied');
-                    }
-                }
-                
-                // Test device orientation availability
-                if (!window.DeviceOrientationEvent) {
-                    console.warn('Device orientation not supported, using fallback');
-                }
-            } catch (error) {
-                console.warn('Orientation permission error:', error);
-                // Continue without throwing - we'll use fallback controls
-            }
-        }
-
-        // Initialize camera
-        async function initCamera() {
-            const video = document.getElementById('cameraVideo');
-            
-            try {
+                // Request camera permission
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: { 
                         facingMode: 'environment',
@@ -748,116 +478,269 @@
                     }
                 });
                 
-                video.srcObject = stream;
-                appState.cameraStream = stream;
+                cameraStream = stream;
+                document.getElementById('cameraFeed').srcObject = stream;
                 
-                return new Promise((resolve) => {
-                    video.onloadedmetadata = () => {
-                        video.play();
-                        resolve();
-                    };
-                });
-            } catch (error) {
-                throw new Error('Camera access denied or not available');
-            }
-        }
-
-        // Initialize device orientation
-        function initDeviceOrientation() {
-            try {
-                // Test if device orientation is supported
-                if (!window.DeviceOrientationEvent) {
-                    console.warn('Device orientation not supported');
-                    return false;
-                }
-
-                window.addEventListener('deviceorientation', (event) => {
-                    try {
-                        // Handle iOS webkit compass heading
-                        let alpha = event.alpha;
-                        if (event.webkitCompassHeading !== undefined) {
-                            alpha = event.webkitCompassHeading;
-                        }
-                        
-                        appState.deviceOrientation = {
-                            alpha: alpha || 0,
-                            beta: event.beta || 0,
-                            gamma: event.gamma || 0
-                        };
-                    } catch (orientationError) {
-                        console.warn('Device orientation error:', orientationError);
+                // Request device orientation permission for iOS
+                if (typeof DeviceOrientationEvent !== 'undefined' && 
+                    typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    const permission = await DeviceOrientationEvent.requestPermission();
+                    if (permission === 'granted') {
+                        setupOrientationTracking();
                     }
-                }, { passive: true });
-
-                return true;
+                } else {
+                    setupOrientationTracking();
+                }
+                
+                showCaptureScreen();
+                setupGuidanceDots();
+                
             } catch (error) {
-                console.error('Device orientation initialization failed:', error);
-                return false;
+                console.error('Error starting capture:', error);
+                alert('Camera permission is required for this app to work.');
             }
         }
 
-        // Finish capture and process panorama
-        function finishCapture() {
-            if (appState.capturedImages.length < 2) {
-                alert('Please capture at least 2 images for stitching.');
+        // Setup device orientation tracking
+        function setupOrientationTracking() {
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', handleOrientation, true);
+                window.addEventListener('deviceorientationabsolute', handleOrientation, true);
+            }
+        }
+
+        // Handle device orientation changes
+        function handleOrientation(event) {
+            deviceOrientation.alpha = event.alpha || 0;
+            deviceOrientation.beta = event.beta || 0;
+            deviceOrientation.gamma = event.gamma || 0;
+            
+            // Update compass heading display
+            let heading = event.webkitCompassHeading || event.alpha || 0;
+            document.getElementById('compassHeading').textContent = `Compass: ${Math.round(heading)}°`;
+            
+            updateGuidanceDots();
+        }
+
+        // Show capture screen
+        function showCaptureScreen() {
+            document.getElementById('homeScreen').style.display = 'none';
+            document.getElementById('captureScreen').style.display = 'block';
+            currentScreen = 'capture';
+        }
+
+        // Setup guidance dots in AR overlay
+        function setupGuidanceDots() {
+            const overlay = document.getElementById('arOverlay');
+            guidanceDots = [];
+            
+            dotPositions.forEach((pos, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'guidance-dot';
+                dot.dataset.index = index;
+                dot.onclick = () => setActiveDot(index);
+                overlay.appendChild(dot);
+                guidanceDots.push({
+                    element: dot,
+                    position: pos,
+                    captured: false
+                });
+            });
+            
+            setActiveDot(0);
+            updateGuidanceDots();
+        }
+
+        // Update guidance dot positions based on orientation
+        function updateGuidanceDots() {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const radius = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+            
+            guidanceDots.forEach((dot, index) => {
+                const pos = dot.position;
+                
+                // Convert spherical coordinates to screen coordinates
+                // This is a simplified projection
+                const yawRad = (pos.yaw - deviceOrientation.alpha) * Math.PI / 180;
+                const pitchRad = (pos.pitch - deviceOrientation.beta) * Math.PI / 180;
+                
+                const x = centerX + Math.sin(yawRad) * radius * Math.cos(pitchRad);
+                const y = centerY - Math.sin(pitchRad) * radius;
+                
+                // Check if dot should be visible (on screen)
+                const visible = x > 0 && x < window.innerWidth && y > 0 && y < window.innerHeight;
+                
+                dot.element.style.left = x + 'px';
+                dot.element.style.top = y + 'px';
+                dot.element.style.display = visible ? 'block' : 'none';
+                
+                // Check if user is pointing at the active dot (auto-capture)
+                if (index === currentDotIndex && !dot.captured) {
+                    const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                    if (distance < 50) { // Close enough to crosshair
+                        setTimeout(() => {
+                            if (index === currentDotIndex && !dot.captured) {
+                                capturePhoto();
+                            }
+                        }, 1000); // Auto-capture after 1 second
+                    }
+                }
+            });
+        }
+
+        // Set active guidance dot
+        function setActiveDot(index) {
+            guidanceDots.forEach(dot => dot.element.classList.remove('active'));
+            if (guidanceDots[index] && !guidanceDots[index].captured) {
+                guidanceDots[index].element.classList.add('active');
+                currentDotIndex = index;
+            }
+        }
+
+        // Capture photo
+        function capturePhoto() {
+            if (guidanceDots[currentDotIndex].captured) return;
+            
+            const video = document.getElementById('cameraFeed');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+            
+            const imageData = canvas.toDataURL('image/jpeg', 0.9);
+            
+            // Store captured image with metadata
+            capturedImages.push({
+                data: imageData,
+                orientation: { ...deviceOrientation },
+                position: dotPositions[currentDotIndex],
+                timestamp: Date.now()
+            });
+            
+            // Mark dot as captured
+            guidanceDots[currentDotIndex].captured = true;
+            guidanceDots[currentDotIndex].element.classList.add('captured');
+            guidanceDots[currentDotIndex].element.classList.remove('active');
+            
+            // Show captured image preview
+            showCapturedImagePreview(imageData, currentDotIndex);
+            
+            // Update progress
+            updateProgress();
+            
+            // Move to next uncaptured dot
+            findNextDot();
+        }
+
+        // Show captured image preview
+        function showCapturedImagePreview(imageData, index) {
+            const overlay = document.getElementById('arOverlay');
+            const preview = document.createElement('img');
+            preview.className = 'captured-image';
+            preview.src = imageData;
+            
+            // Position preview near the captured dot
+            const dot = guidanceDots[index];
+            const dotRect = dot.element.getBoundingClientRect();
+            preview.style.left = (dotRect.left - 30) + 'px';
+            preview.style.top = (dotRect.top - 20) + 'px';
+            
+            overlay.appendChild(preview);
+        }
+
+        // Update capture progress
+        function updateProgress() {
+            const capturedCount = capturedImages.length;
+            const totalCount = dotPositions.length;
+            const progress = capturedCount / totalCount;
+            
+            document.getElementById('captureCount').textContent = `${capturedCount}/${totalCount} captured`;
+            
+            // Update progress ring
+            const circle = document.getElementById('progressCircle');
+            const circumference = 2 * Math.PI * 54;
+            const offset = circumference - (progress * circumference);
+            circle.style.strokeDashoffset = offset;
+        }
+
+        // Find next uncaptured dot
+        function findNextDot() {
+            for (let i = 0; i < guidanceDots.length; i++) {
+                if (!guidanceDots[i].captured) {
+                    setActiveDot(i);
+                    return;
+                }
+            }
+            
+            // All dots captured
+            document.getElementById('instructionText').textContent = 'All positions captured! Tap Complete to stitch panorama.';
+        }
+
+        // Complete capture and start stitching
+        function completeCapture() {
+            if (capturedImages.length === 0) {
+                alert('Please capture at least one image before completing.');
                 return;
             }
             
-            appState.isCapturing = false;
-            
-            // Switch to processing screen
-            document.getElementById('arInterface').style.display = 'none';
-            document.getElementById('processingScreen').style.display = 'flex';
-            
-            // Start panorama processing
+            showProcessingScreen();
             setTimeout(() => {
-                processPanoramaEnhanced();
-            }, 500);
+                stitchPanorama();
+            }, 1000);
         }
 
-        // Process panorama using basic stitching
-        async function processPanorama() {
+        // Show processing screen
+        function showProcessingScreen() {
+            document.getElementById('processingScreen').style.display = 'flex';
+        }
+
+        // Hide processing screen
+        function hideProcessingScreen() {
+            document.getElementById('processingScreen').style.display = 'none';
+        }
+
+        // Stitch panorama (simplified implementation)
+        function stitchPanorama() {
             try {
-                document.getElementById('processingText').textContent = 'Stitching images...';
-                
-                // Simple panorama creation by arranging images in equirectangular projection
+                // Create a large canvas for the equirectangular panorama
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
                 
-                // Set canvas size for equirectangular panorama (2:1 ratio)
-                canvas.width = 4096;
-                canvas.height = 2048;
+                // Standard equirectangular dimensions (2:1 ratio)
+                canvas.width = 2048;
+                canvas.height = 1024;
                 
                 // Fill with black background
                 ctx.fillStyle = '#000000';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
-                // Load and place images
-                const imagePromises = appState.capturedImages.map((capture, index) => {
+                // Process each captured image
+                const promises = capturedImages.map((capture, index) => {
                     return new Promise((resolve) => {
                         const img = new Image();
                         img.onload = () => {
-                            // Convert spherical coordinates to equirectangular projection
+                            // Calculate position on equirectangular projection
                             const pos = capture.position;
-                            const x = ((pos.lon + 180) / 360) * canvas.width;
-                            const y = ((90 - pos.lat) / 180) * canvas.height;
                             
-                            // Calculate image size based on distance from poles
-                            const latFactor = Math.cos(pos.lat * Math.PI / 180);
-                            const imgWidth = Math.max(200, 300 * latFactor);
-                            const imgHeight = imgWidth * 0.75; // 4:3 aspect ratio
+                            // Convert spherical coordinates to equirectangular coordinates
+                            const x = ((pos.yaw + 180) / 360) * canvas.width;
+                            const y = ((90 - pos.pitch) / 180) * canvas.height;
                             
-                            // Draw image with feathering edges
-                            ctx.save();
+                            // Calculate image size based on field of view
+                            const imageWidth = canvas.width / 6; // Approximate FOV coverage
+                            const imageHeight = canvas.height / 6;
+                            
+                            // Draw image with some overlap blending
                             ctx.globalAlpha = 0.8;
-                            ctx.globalCompositeOperation = 'screen';
-                            
-                            // Apply slight rotation for more natural blending
-                            ctx.translate(x, y);
-                            ctx.rotate((Math.random() - 0.5) * 0.1);
-                            
-                            ctx.drawImage(img, -imgWidth/2, -imgHeight/2, imgWidth, imgHeight);
-                            ctx.restore();
+                            ctx.drawImage(img, 
+                                x - imageWidth/2, 
+                                y - imageHeight/2, 
+                                imageWidth, 
+                                imageHeight
+                            );
                             
                             resolve();
                         };
@@ -865,361 +748,257 @@
                     });
                 });
                 
-                await Promise.all(imagePromises);
-                
-                document.getElementById('processingText').textContent = 'Finalizing panorama...';
-                
-                // Apply post-processing effects
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // Convert to final image
-                const panoramaData = canvas.toDataURL('image/jpeg', 0.9);
-                
-                // Switch to preview
-                showPanoramaPreview(panoramaData);
+                // Wait for all images to be processed
+                Promise.all(promises).then(() => {
+                    const panoramaData = canvas.toDataURL('image/jpeg', 0.9);
+                    hideProcessingScreen();
+                    showViewer(panoramaData);
+                });
                 
             } catch (error) {
-                alert('Failed to process panorama: ' + error.message);
-                startNew();
+                console.error('Error stitching panorama:', error);
+                hideProcessingScreen();
+                alert('Error creating panorama. Please try again.');
             }
         }
 
-        // Show panorama preview
-        function showPanoramaPreview(panoramaData) {
-            document.getElementById('processingScreen').style.display = 'none';
-            document.getElementById('previewScreen').style.display = 'block';
-            appState.currentScreen = 'preview';
+        // Show panorama viewer
+        function showViewer(panoramaData) {
+            document.getElementById('captureScreen').style.display = 'none';
+            document.getElementById('viewerScreen').style.display = 'block';
+            currentScreen = 'viewer';
             
-            // Create simple panorama viewer using CSS transforms
-            const viewer = document.getElementById('panoramaViewer');
-            viewer.innerHTML = `
-                <div style="
-                    width: 100%;
-                    height: 100%;
-                    background-image: url(${panoramaData});
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    transform-style: preserve-3d;
-                    transition: transform 0.3s ease;
-                " id="panoramaImage"></div>
-            `;
+            // Stop camera stream
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
             
-            // Add touch controls for viewing
-            let startX = 0;
-            let currentX = 0;
-            let rotation = 0;
+            // Initialize Photo Sphere Viewer
+            if (photosphereViewer) {
+                photosphereViewer.destroy();
+            }
             
-            const panoramaImage = document.getElementById('panoramaImage');
+            try {
+                photosphereViewer = new PhotoSphereViewer.Viewer({
+                    container: document.getElementById('photosphere-viewer'),
+                    panorama: panoramaData,
+                    loadingImg: null,
+                    navbar: false,
+                    defaultZoomLvl: 50,
+                    minFov: 30,
+                    maxFov: 90,
+                    touchmoveTwoFingers: true,
+                    mousewheelCtrlKey: true
+                });
+            } catch (error) {
+                console.error('Error initializing viewer:', error);
+                // Fallback: create simple viewer
+                createFallbackViewer(panoramaData);
+            }
+        }
+
+        // Fallback viewer using basic canvas
+        function createFallbackViewer(panoramaData) {
+            const container = document.getElementById('photosphere-viewer');
+            container.innerHTML = '';
             
-            panoramaImage.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-            });
-            
-            panoramaImage.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                currentX = e.touches[0].clientX;
-                const diff = (currentX - startX) * 0.5;
-                panoramaImage.style.transform = `rotateY(${rotation + diff}deg)`;
-            });
-            
-            panoramaImage.addEventListener('touchend', () => {
-                rotation += (currentX - startX) * 0.5;
-                rotation = rotation % 360;
-            });
-            
-            // Store panorama data for saving
-            appState.finalPanorama = panoramaData;
+            const img = document.createElement('img');
+            img.src = panoramaData;
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            container.appendChild(img);
         }
 
         // Save panorama to device
-        function savePanorama() {
-            if (!appState.finalPanorama) return;
+        function savePhoto() {
+            if (!photosphereViewer && !document.querySelector('#photosphere-viewer img')) {
+                alert('No panorama to save.');
+                return;
+            }
             
-            // Create download link
-            const link = document.createElement('a');
-            link.download = `panorama_${Date.now()}.jpg`;
-            link.href = appState.finalPanorama;
-            
-            // For iOS Safari, open in new tab
-            if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-                window.open(appState.finalPanorama, '_blank');
-            } else {
+            try {
+                // Get the panorama data
+                let panoramaData;
+                if (photosphereViewer) {
+                    panoramaData = photosphereViewer.getConfig().panorama;
+                } else {
+                    panoramaData = document.querySelector('#photosphere-viewer img').src;
+                }
+                
+                // Create download link
+                const link = document.createElement('a');
+                link.href = panoramaData;
+                link.download = `photosphere_${new Date().getTime()}.jpg`;
+                
+                // Trigger download
+                document.body.appendChild(link);
                 link.click();
+                document.body.removeChild(link);
+                
+                // Also try to save to Photos app on iOS (if supported)
+                if (navigator.share && navigator.canShare) {
+                    fetch(panoramaData)
+                        .then(res => res.blob())
+                        .then(blob => {
+                            const file = new File([blob], 'photosphere.jpg', { type: 'image/jpeg' });
+                            if (navigator.canShare({ files: [file] })) {
+                                navigator.share({ files: [file] });
+                            }
+                        })
+                        .catch(console.error);
+                }
+                
+            } catch (error) {
+                console.error('Error saving photo:', error);
+                alert('Error saving photo. Please try again.');
             }
         }
 
-        // Start new capture session
-        function startNew() {
+        // Go back to home screen
+        function goHome() {
             // Stop camera stream
-            if (appState.cameraStream) {
-                appState.cameraStream.getTracks().forEach(track => track.stop());
-                appState.cameraStream = null;
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+                cameraStream = null;
+            }
+            
+            // Destroy viewer
+            if (photosphereViewer) {
+                photosphereViewer.destroy();
+                photosphereViewer = null;
             }
             
             // Reset state
-            appState = {
-                currentScreen: 'menu',
-                isCapturing: false,
-                autoCapture: true,
-                capturedImages: [],
-                currentTargetIndex: 0,
-                deviceOrientation: { alpha: 0, beta: 0, gamma: 0 },
-                cameraStream: null,
-                scene: null,
-                camera: null,
-                renderer: null,
-                targetSphere: null,
-                capturedSphere: null,
-                targetPositions: [],
-                lastCaptureTime: 0,
-                orientationSmoothing: {
-                    alpha: 0,
-                    beta: 0,
-                    gamma: 0,
-                    smoothFactor: 0.1
-                }
-            };
+            capturedImages = [];
+            guidanceDots = [];
+            currentDotIndex = 0;
             
-            // Show main menu
-            document.getElementById('previewScreen').style.display = 'none';
-            document.getElementById('arInterface').style.display = 'none';
+            // Clear overlays
+            const overlay = document.getElementById('arOverlay');
+            const previews = overlay.querySelectorAll('.captured-image');
+            previews.forEach(preview => preview.remove());
+            
+            const dots = overlay.querySelectorAll('.guidance-dot');
+            dots.forEach(dot => dot.remove());
+            
+            // Show home screen
+            document.getElementById('captureScreen').style.display = 'none';
+            document.getElementById('viewerScreen').style.display = 'none';
             document.getElementById('processingScreen').style.display = 'none';
-            document.getElementById('mainMenu').style.display = 'flex';
+            document.getElementById('homeScreen').style.display = 'flex';
+            currentScreen = 'home';
+            
+            // Reset progress
+            document.getElementById('captureCount').textContent = '0/12 captured';
+            document.getElementById('progressCircle').style.strokeDashoffset = '339.292';
         }
 
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (appState.renderer && appState.camera) {
-                appState.camera.aspect = window.innerWidth / window.innerHeight;
-                appState.camera.updateProjectionMatrix();
-                appState.renderer.setSize(window.innerWidth, window.innerHeight);
-            }
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            setTimeout(updateGuidanceDots, 100);
         });
-
-        // Prevent default touch behaviors for better AR experience
-        document.addEventListener('touchmove', (e) => {
-            if (appState.currentScreen === 'capture') {
-                e.preventDefault();
-            }
-        }, { passive: false });
 
         // Handle page visibility for battery optimization
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && appState.currentScreen === 'capture') {
-                // Pause capture when app goes to background
-                appState.isCapturing = false;
-            } else if (!document.hidden && appState.currentScreen === 'capture') {
-                // Resume capture when app comes to foreground
-                appState.isCapturing = true;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden && cameraStream) {
+                // Pause camera when app is not visible
+                const video = document.getElementById('cameraFeed');
+                video.srcObject = null;
+            } else if (!document.hidden && cameraStream && currentScreen === 'capture') {
+                // Resume camera when app becomes visible
+                const video = document.getElementById('cameraFeed');
+                video.srcObject = cameraStream;
             }
         });
 
-        // Enhanced error handling for production
-        window.addEventListener('error', (e) => {
-            console.error('App error:', e.error);
-            if (appState.currentScreen === 'capture') {
-                // Show user-friendly error message
-                setTimeout(() => {
-                    alert('An error occurred. Returning to main menu.');
-                    startNew();
-                }, 100);
+        // Prevent zoom on double tap (iOS Safari)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
             }
-        });
+            lastTouchEnd = now;
+        }, false);
 
-        // Handle unhandled promise rejections
-        window.addEventListener('unhandledrejection', (e) => {
-            console.error('Unhandled promise rejection:', e.reason);
-            e.preventDefault(); // Prevent browser default error handling
-            
-            if (appState.currentScreen === 'capture') {
-                setTimeout(() => {
-                    alert('An error occurred. Returning to main menu.');
-                    startNew();
-                }, 100);
-            }
-        });
-
-        // Improved feature detection and stitching for better results
-        class ImageStitcher {
-            constructor() {
-                this.canvas = document.createElement('canvas');
-                this.ctx = this.canvas.getContext('2d');
-            }
-
-            // Enhanced stitching with better overlap handling
-            async stitchImages(images) {
-                const sortedImages = this.sortImagesByPosition(images);
-                return this.createEquirectangularPanorama(sortedImages);
-            }
-
-            sortImagesByPosition(images) {
-                // Sort images by longitude, then by latitude for better stitching order
-                return images.sort((a, b) => {
-                    if (Math.abs(a.position.lat - b.position.lat) < 10) {
-                        return a.position.lon - b.position.lon;
-                    }
-                    return b.position.lat - a.position.lat;
-                });
-            }
-
-            async createEquirectangularPanorama(images) {
-                this.canvas.width = 4096;
-                this.canvas.height = 2048;
-                
-                // Clear canvas
-                this.ctx.fillStyle = '#000000';
-                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-                
-                // Process images in batches for better performance
-                for (let i = 0; i < images.length; i += 5) {
-                    const batch = images.slice(i, i + 5);
-                    await this.processBatch(batch);
-                    
-                    // Update progress
-                    const progress = Math.round(((i + batch.length) / images.length) * 100);
-                    document.getElementById('processingText').textContent = 
-                        `Processing images... ${progress}%`;
+        // Handle device motion for enhanced AR tracking (if available)
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', function(event) {
+                // Use accelerometer data for smoother tracking
+                // This could be enhanced with more sophisticated filtering
+                const acceleration = event.acceleration;
+                if (acceleration) {
+                    // Implement motion smoothing if needed
                 }
-                
-                return this.canvas.toDataURL('image/jpeg', 0.9);
-            }
-
-            async processBatch(batch) {
-                const promises = batch.map(capture => this.loadAndDrawImage(capture));
-                await Promise.all(promises);
-            }
-
-            loadAndDrawImage(capture) {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        this.drawImageWithBlending(img, capture.position);
-                        resolve();
-                    };
-                    img.src = capture.data;
-                });
-            }
-
-            drawImageWithBlending(img, position) {
-                // Convert spherical to equirectangular coordinates
-                const x = ((position.lon + 180) / 360) * this.canvas.width;
-                const y = ((90 - position.lat) / 180) * this.canvas.height;
-                
-                // Calculate adaptive image size
-                const latFactor = Math.cos(position.lat * Math.PI / 180);
-                const baseSize = Math.min(this.canvas.width / 8, this.canvas.height / 4);
-                const imgWidth = baseSize * Math.max(0.5, latFactor);
-                const imgHeight = imgWidth * 0.75;
-                
-                // Apply advanced blending
-                this.ctx.save();
-                this.ctx.globalCompositeOperation = 'source-over';
-                this.ctx.globalAlpha = 0.85;
-                
-                // Create radial gradient for edge feathering
-                const gradient = this.ctx.createRadialGradient(
-                    x, y, 0, x, y, Math.max(imgWidth, imgHeight) / 2
-                );
-                gradient.addColorStop(0, 'rgba(255,255,255,1)');
-                gradient.addColorStop(0.7, 'rgba(255,255,255,0.8)');
-                gradient.addColorStop(1, 'rgba(255,255,255,0.3)');
-                
-                // Apply mask for smoother blending
-                this.ctx.beginPath();
-                this.ctx.arc(x, y, Math.max(imgWidth, imgHeight) / 2, 0, Math.PI * 2);
-                this.ctx.fillStyle = gradient;
-                this.ctx.fill();
-                this.ctx.globalCompositeOperation = 'source-in';
-                
-                // Draw the image
-                this.ctx.drawImage(img, x - imgWidth/2, y - imgHeight/2, imgWidth, imgHeight);
-                this.ctx.restore();
-            }
-        }
-
-        // Replace the simple processPanorama with enhanced version
-        async function processPanoramaEnhanced() {
-            try {
-                const stitcher = new ImageStitcher();
-                document.getElementById('processingText').textContent = 'Analyzing images...';
-                
-                await new Promise(resolve => setTimeout(resolve, 500));
-                
-                const panoramaData = await stitcher.stitchImages(appState.capturedImages);
-                
-                document.getElementById('processingText').textContent = 'Finalizing...';
-                await new Promise(resolve => setTimeout(resolve, 500));
-                
-                showPanoramaPreview(panoramaData);
-                
-            } catch (error) {
-                alert('Failed to process panorama: ' + error.message);
-                startNew();
-            }
-        }
-
-        // Service Worker registration for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                const swContent = `
-                    const CACHE_NAME = 'panorama-capture-v4';
-                    const urlsToCache = ['/'];
-                    
-                    self.addEventListener('install', (event) => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then((cache) => cache.addAll(urlsToCache))
-                        );
-                    });
-                    
-                    self.addEventListener('fetch', (event) => {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then((response) => response || fetch(event.request))
-                        );
-                    });
-                `;
-                
-                const blob = new Blob([swContent], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                
-                navigator.serviceWorker.register(swUrl)
-                    .then(() => console.log('SW registered'))
-                    .catch(() => console.log('SW registration failed'));
             });
         }
 
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set initial state
-            appState.currentScreen = 'menu';
-            
-            // Add install prompt for PWA
-            let deferredPrompt;
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                
-                // Show install button
-                const installBtn = document.createElement('button');
-                installBtn.textContent = 'Install App';
-                installBtn.className = 'control-button';
-                installBtn.style.position = 'absolute';
-                installBtn.style.top = '20px';
-                installBtn.style.right = '20px';
-                installBtn.onclick = () => {
-                    if (deferredPrompt) {
-                        deferredPrompt.prompt();
-                        deferredPrompt.userChoice.then(() => {
-                            deferredPrompt = null;
-                            installBtn.style.display = 'none';
-                        });
-                    }
-                };
-                document.getElementById('mainMenu').appendChild(installBtn);
-            });
+        // Error handling for camera issues
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+            if (event.error.name === 'NotAllowedError') {
+                alert('Camera permission was denied. Please enable camera access in your browser settings.');
+            }
         });
+
+        // Check for updates (PWA update mechanism)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('controllerchange', function() {
+                if (confirm('New version available! Reload to update?')) {
+                    window.location.reload();
+                }
+            });
+        }
+
+        // Handle WebXR AR if available (enhanced AR mode)
+        async function tryWebXRAR() {
+            if ('xr' in navigator) {
+                try {
+                    const isSupported = await navigator.xr.isSessionSupported('immersive-ar');
+                    if (isSupported) {
+                        const session = await navigator.xr.requestSession('immersive-ar');
+                        // Enhanced AR implementation would go here
+                        console.log('WebXR AR session started');
+                    }
+                } catch (error) {
+                    console.log('WebXR AR not available, using fallback');
+                }
+            }
+        }
+
+        // Enhanced compass calibration for better accuracy
+        function calibrateCompass() {
+            if (typeof DeviceOrientationEvent !== 'undefined') {
+                // Listen for compass calibration events
+                window.addEventListener('compassneedscalibration', function(event) {
+                    alert('Your compass needs calibration. Please move your device in a figure-8 motion.');
+                    event.preventDefault();
+                }, true);
+            }
+        }
+
+        // Initialize compass calibration
+        calibrateCompass();
+
+        // Performance optimization: throttle orientation updates
+        let orientationUpdateTimeout;
+        function throttledOrientationUpdate() {
+            if (orientationUpdateTimeout) return;
+            orientationUpdateTimeout = setTimeout(() => {
+                updateGuidanceDots();
+                orientationUpdateTimeout = null;
+            }, 16); // ~60fps
+        }
+
+        // Override the original handleOrientation to use throttling
+        const originalHandleOrientation = handleOrientation;
+        handleOrientation = function(event) {
+            originalHandleOrientation(event);
+            throttledOrientationUpdate();
+        };
+
     </script>
 </body>
 </html>
