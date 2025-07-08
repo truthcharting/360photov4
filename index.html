@@ -934,30 +934,52 @@
             console.log('OpenCV.js loaded successfully');
         }
 
-        // Generate capture points using optimized Fibonacci sphere
+        // Generate capture points in uniform rows around the sphere
         function generateCapturePoints() {
             const points = [];
-            const numPoints = 36; // Reduced for better performance and overlap
-            const goldenRatio = (1 + Math.sqrt(5)) / 2;
+            const radius = 5;
             
-            for (let i = 0; i < numPoints; i++) {
-                const theta = 2 * Math.PI * i / goldenRatio;
-                const phi = Math.acos(1 - 2 * (i + 0.5) / numPoints);
+            // Define rows with different numbers of points based on latitude
+            const rows = [
+                { lat: 75, count: 4 },   // Top row (near north pole)
+                { lat: 45, count: 6 },   // Upper row
+                { lat: 15, count: 8 },   // Upper middle row
+                { lat: 0, count: 10 },   // Equator row (most points)
+                { lat: -15, count: 8 },  // Lower middle row
+                { lat: -45, count: 6 },  // Lower row
+                { lat: -75, count: 4 }   // Bottom row (near south pole)
+            ];
+            
+            let pointId = 0;
+            
+            rows.forEach(row => {
+                const lat = row.lat;
+                const count = row.count;
                 
-                const radius = 5;
-                const x = radius * Math.sin(phi) * Math.cos(theta);
-                const y = radius * Math.cos(phi);
-                const z = radius * Math.sin(phi) * Math.sin(theta);
+                // Convert latitude to phi (0 to PI)
+                const phi = THREE.MathUtils.degToRad(90 - lat);
                 
-                points.push({
-                    id: i,
-                    position: new THREE.Vector3(x, y, z),
-                    captured: false,
-                    image: null,
-                    mesh: null,
-                    captureOrientation: null
-                });
-            }
+                for (let i = 0; i < count; i++) {
+                    // Distribute points evenly around the longitude
+                    const theta = (2 * Math.PI * i) / count;
+                    
+                    // Convert spherical coordinates to Cartesian
+                    const x = radius * Math.sin(phi) * Math.cos(theta);
+                    const y = radius * Math.cos(phi);
+                    const z = radius * Math.sin(phi) * Math.sin(theta);
+                    
+                    points.push({
+                        id: pointId++,
+                        position: new THREE.Vector3(x, y, z),
+                        captured: false,
+                        image: null,
+                        mesh: null,
+                        captureOrientation: null,
+                        row: row,
+                        indexInRow: i
+                    });
+                }
+            });
             
             return points;
         }
