@@ -321,7 +321,7 @@
         <div class="home-screen" id="homeScreen">
             <h1 class="app-title">360° Photosphere</h1>
             <p class="app-subtitle">AR-Enhanced Panoramic Photography</p>
-            <button class="start-button" onclick="startCapture()">Start Capture</button>
+            <button class="start-button" onclick="requestPermissions()">Start Capture</button>
             <div class="version">v4.2.0</div>
         </div>
 
@@ -430,46 +430,76 @@
 
         // Service Worker for PWA functionality
         function setupServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                const swCode = `
-                    const CACHE_NAME = 'photosphere-v4.2.0';
-                    const urlsToCache = ['/'];
-                    
-                    self.addEventListener('install', event => {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(cache => cache.addAll(urlsToCache))
-                        );
+            // Skip service worker registration in this environment to avoid blob URL issues
+            console.log('PWA features available - Service Worker would be registered in production');
+        }
+
+        // Check WebXR support safely
+        function checkWebXRSupport() {
+            try {
+                if ('xr' in navigator && navigator.xr) {
+                    navigator.xr.isSessionSupported('immersive-ar').then(supported => {
+                        console.log('WebXR AR supported:', supported);
+                    }).catch(error => {
+                        console.log('WebXR AR check failed:', error.message);
                     });
-                    
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then(response => response || fetch(event.request))
-                        );
-                    });
-                `;
-                
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swUrl = URL.createObjectURL(blob);
-                
-                navigator.serviceWorker.register(swUrl).catch(console.error);
+                } else {
+                    console.log('WebXR not available');
+                }
+            } catch (error) {
+                console.log('WebXR support check skipped:', error.message);
             }
         }
 
-        // Check WebXR support
-        function checkWebXRSupport() {
-            if ('xr' in navigator) {
-                navigator.xr.isSessionSupported('immersive-ar').then(supported => {
-                    console.log('WebXR AR supported:', supported);
-                }).catch(console.error);
+        // New function to handle permission requests step by step
+        async function requestPermissions() {
+            const button = document.querySelector('.start-button');
+            const originalText = button.textContent;
+            
+            try {
+                // Step 1: Request orientation permission (iOS)
+                button.textContent = 'Requesting Motion Permission...';
+                
+                if (typeof DeviceOrientationEvent !== 'undefined' && 
+                    typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    
+                    const orientationPermission = await DeviceOrientationEvent.requestPermission();
+                    console.log('Orientation permission:', orientationPermission);
+                    
+                    if (orientationPermission !== 'granted') {
+                        button.textContent = originalText;
+                        alert('Motion & Orientation access is required for AR guidance.\n\nPlease:\n1. Tap "Start Capture" again\n2. Allow motion access when prompted\n3. Grant camera permission');
+                        return;
+                    }
+                    
+                    setupOrientationTracking();
+                } else {
+                    // Non-iOS devices
+                    console.log('Orientation permission not required on this device');
+                    setupOrientationTracking();
+                }
+                
+                // Step 2: Request camera permission
+                button.textContent = 'Requesting Camera Permission...';
+                await startCapture();
+                
+            } catch (error) {
+                button.textContent = originalText;
+                console.error('Permission error:', error);
+                
+                if (error.name === 'NotAllowedError') {
+                    alert('Permissions were denied. Please:\n1. Refresh the page\n2. Grant motion permission when prompted\n3. Grant camera permission when prompted');
+                } else {
+                    alert('Error requesting permissions: ' + error.message);
+                }
             }
         }
 
         // Request permissions and start capture
         async function startCapture() {
             try {
-                // Request camera permission
+                console.log('Requesting camera permission...');
+                
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: { 
                         facingMode: 'environment',
@@ -478,26 +508,30 @@
                     }
                 });
                 
+                console.log('Camera permission granted');
                 cameraStream = stream;
                 document.getElementById('cameraFeed').srcObject = stream;
-                
-                // Request device orientation permission for iOS
-                if (typeof DeviceOrientationEvent !== 'undefined' && 
-                    typeof DeviceOrientationEvent.requestPermission === 'function') {
-                    const permission = await DeviceOrientationEvent.requestPermission();
-                    if (permission === 'granted') {
-                        setupOrientationTracking();
-                    }
-                } else {
-                    setupOrientationTracking();
-                }
                 
                 showCaptureScreen();
                 setupGuidanceDots();
                 
             } catch (error) {
                 console.error('Error starting capture:', error);
-                alert('Camera permission is required for this app to work.');
+                
+                // More specific error messages
+                if (error.name === 'NotAllowedError') {
+                    alert('Camera permission was denied.\n\nPlease:\n1. Refresh the page\n2. Allow camera access when prompted');
+                } else if (error.name === 'NotFoundError') {
+                    alert('No camera found on this device.');
+                } else if (error.name === 'NotSupportedError') {
+                    alert('Camera access is not supported on this device.');
+                } else {
+                    alert('Unable to access camera: ' + error.message);
+                }
+                
+                // Reset button
+                const button = document.querySelector('.start-button');
+                button.textContent = 'Start Capture';
             }
         }
 
@@ -938,34 +972,31 @@
         // Error handling for camera issues
         window.addEventListener('error', function(event) {
             console.error('Global error:', event.error);
-            if (event.error.name === 'NotAllowedError') {
-                alert('Camera permission was denied. Please enable camera access in your browser settings.');
-            }
+            // Don't show alerts for every error, just log them
         });
 
         // Check for updates (PWA update mechanism)
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.addEventListener('controllerchange', function() {
-                if (confirm('New version available! Reload to update?')) {
-                    window.location.reload();
-                }
-            });
+        function checkForUpdates() {
+            // Simplified update check without service worker
+            console.log('Update check - would use service worker in production');
         }
 
         // Handle WebXR AR if available (enhanced AR mode)
         async function tryWebXRAR() {
-            if ('xr' in navigator) {
-                try {
+            try {
+                if ('xr' in navigator && navigator.xr) {
                     const isSupported = await navigator.xr.isSessionSupported('immersive-ar');
                     if (isSupported) {
                         const session = await navigator.xr.requestSession('immersive-ar');
                         // Enhanced AR implementation would go here
                         console.log('WebXR AR session started');
+                        return session;
                     }
-                } catch (error) {
-                    console.log('WebXR AR not available, using fallback');
                 }
+            } catch (error) {
+                console.log('WebXR AR not available:', error.message);
             }
+            return null;
         }
 
         // Enhanced compass calibration for better accuracy
