@@ -252,7 +252,7 @@
         /* Modern Crosshair */
         .crosshair {
             position: absolute;
-            top: 50%;
+            top: calc(50% - 20px);  /* Raised up by 20px */
             left: 50%;
             transform: translate(-50%, -50%);
             width: 80px;
@@ -1086,7 +1086,7 @@
             });
         }
 
-        // Check if dot is in crosshair
+        // Check if dot is in crosshair (adjusted for raised crosshair position)
         function isDotInCrosshair(mesh) {
             const vector = mesh.position.clone();
             vector.project(threeCamera);
@@ -1097,13 +1097,13 @@
             if (vector.z > 1) return false;
             
             const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
+            const centerY = (window.innerHeight / 2) - 20; // Adjusted for raised crosshair
             const distance = Math.sqrt(
                 Math.pow(screenX - centerX, 2) + 
                 Math.pow(screenY - centerY, 2)
             );
             
-            return distance < 40;
+            return distance < 50; // Slightly increased detection radius for better UX
         }
 
         // Auto-capture when crosshair is on uncaptured dot
