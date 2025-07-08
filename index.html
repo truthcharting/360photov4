@@ -386,72 +386,83 @@
 
         // Initialize Three.js AR overlay
         function initThreeJS() {
-            const canvas = document.getElementById('arCanvas');
-            const scene = new THREE.Scene();
-            
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 0, 0);
-            
-            const renderer = new THREE.WebGLRenderer({ 
-                canvas: canvas, 
-                alpha: true,
-                antialias: true 
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setClearColor(0x000000, 0);
-
-            // Create target sphere (invisible sphere with dots)
-            const sphereGeometry = new THREE.SphereGeometry(10, 32, 16);
-            const sphereMaterial = new THREE.MeshBasicMaterial({ 
-                transparent: true, 
-                opacity: 0 
-            });
-            const targetSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-            scene.add(targetSphere);
-
-            // Create captured image sphere
-            const capturedSphere = new THREE.Group();
-            scene.add(capturedSphere);
-
-            // Add target dots
-            appState.targetPositions.forEach((pos, index) => {
-                const dotGeometry = new THREE.SphereGeometry(0.15, 8, 6);
-                const dotMaterial = new THREE.MeshBasicMaterial({ 
-                    color: pos.captured ? 0x00ff00 : 0x4facfe,
-                    transparent: true,
-                    opacity: 0.8
+            try {
+                const canvas = document.getElementById('arCanvas');
+                const scene = new THREE.Scene();
+                
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.set(0, 0, 0);
+                
+                const renderer = new THREE.WebGLRenderer({ 
+                    canvas: canvas, 
+                    alpha: true,
+                    antialias: true 
                 });
-                const dot = new THREE.Mesh(dotGeometry, dotMaterial);
-                
-                // Convert lat/lon to 3D coordinates
-                const phi = (90 - pos.lat) * (Math.PI / 180);
-                const theta = pos.lon * (Math.PI / 180);
-                
-                dot.position.x = 10 * Math.sin(phi) * Math.cos(theta);
-                dot.position.y = 10 * Math.cos(phi);
-                dot.position.z = 10 * Math.sin(phi) * Math.sin(theta);
-                
-                dot.userData = { index: index, position: pos };
-                targetSphere.add(dot);
-            });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setClearColor(0x000000, 0);
 
-            appState.scene = scene;
-            appState.camera = camera;
-            appState.renderer = renderer;
-            appState.targetSphere = targetSphere;
-            appState.capturedSphere = capturedSphere;
+                // Create target sphere (invisible sphere with dots)
+                const sphereGeometry = new THREE.SphereGeometry(10, 32, 16);
+                const sphereMaterial = new THREE.MeshBasicMaterial({ 
+                    transparent: true, 
+                    opacity: 0 
+                });
+                const targetSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+                scene.add(targetSphere);
 
-            animate();
+                // Create captured image sphere
+                const capturedSphere = new THREE.Group();
+                scene.add(capturedSphere);
+
+                // Add target dots
+                appState.targetPositions.forEach((pos, index) => {
+                    const dotGeometry = new THREE.SphereGeometry(0.15, 8, 6);
+                    const dotMaterial = new THREE.MeshBasicMaterial({ 
+                        color: pos.captured ? 0x00ff00 : 0x4facfe,
+                        transparent: true,
+                        opacity: 0.8
+                    });
+                    const dot = new THREE.Mesh(dotGeometry, dotMaterial);
+                    
+                    // Convert lat/lon to 3D coordinates
+                    const phi = (90 - pos.lat) * (Math.PI / 180);
+                    const theta = pos.lon * (Math.PI / 180);
+                    
+                    dot.position.x = 10 * Math.sin(phi) * Math.cos(theta);
+                    dot.position.y = 10 * Math.cos(phi);
+                    dot.position.z = 10 * Math.sin(phi) * Math.sin(theta);
+                    
+                    dot.userData = { index: index, position: pos };
+                    targetSphere.add(dot);
+                });
+
+                appState.scene = scene;
+                appState.camera = camera;
+                appState.renderer = renderer;
+                appState.targetSphere = targetSphere;
+                appState.capturedSphere = capturedSphere;
+
+                animate();
+                return true;
+            } catch (error) {
+                console.error('Three.js initialization failed:', error);
+                return false;
+            }
         }
 
         // Animation loop
         function animate() {
-            requestAnimationFrame(animate);
-            
-            if (appState.currentScreen === 'capture') {
-                updateCameraOrientation();
-                checkTargetAlignment();
-                appState.renderer.render(appState.scene, appState.camera);
+            try {
+                requestAnimationFrame(animate);
+                
+                if (appState.currentScreen === 'capture' && appState.renderer && appState.scene && appState.camera) {
+                    updateCameraOrientation();
+                    checkTargetAlignment();
+                    appState.renderer.render(appState.scene, appState.camera);
+                }
+            } catch (error) {
+                console.error('Animation error:', error);
+                // Continue animation loop even on errors
             }
         }
 
@@ -493,36 +504,45 @@
 
         // Check if crosshairs are aligned with any target
         function checkTargetAlignment() {
-            const crosshairs = document.getElementById('crosshairs');
-            let aligned = false;
-            
-            // Get the center of the screen in world coordinates
-            const raycaster = new THREE.Raycaster();
-            raycaster.setFromCamera(new THREE.Vector2(0, 0), appState.camera);
-            
-            // Check alignment with uncaptured targets
-            appState.targetPositions.forEach((pos, index) => {
-                if (!pos.captured) {
-                    const targetMesh = appState.targetSphere.children[index];
-                    const distance = raycaster.ray.distanceToPoint(targetMesh.position);
-                    
-                    if (distance < 1.5) { // Alignment threshold
-                        aligned = true;
-                        appState.currentTargetIndex = index;
+            try {
+                const crosshairs = document.getElementById('crosshairs');
+                let aligned = false;
+                
+                // Fallback if Three.js is not working
+                if (!appState.scene || !appState.camera) {
+                    return;
+                }
+                
+                // Get the center of the screen in world coordinates
+                const raycaster = new THREE.Raycaster();
+                raycaster.setFromCamera(new THREE.Vector2(0, 0), appState.camera);
+                
+                // Check alignment with uncaptured targets
+                appState.targetPositions.forEach((pos, index) => {
+                    if (!pos.captured && appState.targetSphere && appState.targetSphere.children[index]) {
+                        const targetMesh = appState.targetSphere.children[index];
+                        const distance = raycaster.ray.distanceToPoint(targetMesh.position);
                         
-                        // Auto capture if enabled
-                        if (appState.autoCapture && Date.now() - appState.lastCaptureTime > 1000) {
-                            captureImage();
+                        if (distance < 1.5) { // Alignment threshold
+                            aligned = true;
+                            appState.currentTargetIndex = index;
+                            
+                            // Auto capture if enabled
+                            if (appState.autoCapture && Date.now() - appState.lastCaptureTime > 1000) {
+                                captureImage();
+                            }
                         }
                     }
+                });
+                
+                // Update crosshairs appearance
+                if (aligned) {
+                    crosshairs.classList.add('active');
+                } else {
+                    crosshairs.classList.remove('active');
                 }
-            });
-            
-            // Update crosshairs appearance
-            if (aligned) {
-                crosshairs.classList.add('active');
-            } else {
-                crosshairs.classList.remove('active');
+            } catch (error) {
+                console.warn('Target alignment check error:', error);
             }
         }
 
@@ -619,8 +639,22 @@
 
         // Manual capture button
         function captureManual() {
-            if (appState.currentTargetIndex >= 0 && !appState.targetPositions[appState.currentTargetIndex].captured) {
+            try {
+                // If no specific target is aligned, capture anyway and assign to next available target
+                if (appState.currentTargetIndex < 0 || appState.targetPositions[appState.currentTargetIndex].captured) {
+                    // Find next uncaptured target
+                    const nextTarget = appState.targetPositions.findIndex(pos => !pos.captured);
+                    if (nextTarget >= 0) {
+                        appState.currentTargetIndex = nextTarget;
+                    } else {
+                        alert('All targets have been captured!');
+                        return;
+                    }
+                }
                 captureImage();
+            } catch (error) {
+                console.error('Manual capture error:', error);
+                alert('Failed to capture image. Please try again.');
             }
         }
 
@@ -640,14 +674,26 @@
         // Start capture process
         async function startCapture() {
             try {
-                // Request permissions
+                // Request permissions first
                 await requestPermissions();
                 
                 // Initialize AR interface
                 appState.targetPositions = generateTargetPositions();
+                
+                // Initialize camera
                 await initCamera();
-                initThreeJS();
-                initDeviceOrientation();
+                
+                // Initialize Three.js with error handling
+                const threeJSSuccess = initThreeJS();
+                if (!threeJSSuccess) {
+                    throw new Error('3D graphics initialization failed');
+                }
+                
+                // Initialize device orientation with error handling
+                const orientationSuccess = initDeviceOrientation();
+                if (!orientationSuccess) {
+                    console.warn('Device orientation not available, using manual controls only');
+                }
                 
                 // Switch to capture screen
                 document.getElementById('mainMenu').style.display = 'none';
@@ -656,21 +702,37 @@
                 appState.isCapturing = true;
                 
             } catch (error) {
+                console.error('Start capture error:', error);
                 alert('Failed to start capture: ' + error.message);
+                
+                // Clean up on error
+                if (appState.cameraStream) {
+                    appState.cameraStream.getTracks().forEach(track => track.stop());
+                }
+                startNew();
             }
         }
 
         // Request necessary permissions
         async function requestPermissions() {
-            // Request orientation permission (iOS 13+)
-            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                const permission = await DeviceOrientationEvent.requestPermission();
-                if (permission !== 'granted') {
-                    throw new Error('Device orientation permission denied');
+            try {
+                // Request orientation permission (iOS 13+)
+                if (typeof DeviceOrientationEvent !== 'undefined' && 
+                    typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    const permission = await DeviceOrientationEvent.requestPermission();
+                    if (permission !== 'granted') {
+                        throw new Error('Device orientation permission denied');
+                    }
                 }
+                
+                // Test device orientation availability
+                if (!window.DeviceOrientationEvent) {
+                    console.warn('Device orientation not supported, using fallback');
+                }
+            } catch (error) {
+                console.warn('Orientation permission error:', error);
+                // Continue without throwing - we'll use fallback controls
             }
-            
-            // Request camera permission will be handled in initCamera()
         }
 
         // Initialize camera
@@ -702,19 +764,36 @@
 
         // Initialize device orientation
         function initDeviceOrientation() {
-            window.addEventListener('deviceorientation', (event) => {
-                // Handle iOS webkit compass heading
-                let alpha = event.alpha;
-                if (event.webkitCompassHeading) {
-                    alpha = event.webkitCompassHeading;
+            try {
+                // Test if device orientation is supported
+                if (!window.DeviceOrientationEvent) {
+                    console.warn('Device orientation not supported');
+                    return false;
                 }
-                
-                appState.deviceOrientation = {
-                    alpha: alpha || 0,
-                    beta: event.beta || 0,
-                    gamma: event.gamma || 0
-                };
-            });
+
+                window.addEventListener('deviceorientation', (event) => {
+                    try {
+                        // Handle iOS webkit compass heading
+                        let alpha = event.alpha;
+                        if (event.webkitCompassHeading !== undefined) {
+                            alpha = event.webkitCompassHeading;
+                        }
+                        
+                        appState.deviceOrientation = {
+                            alpha: alpha || 0,
+                            beta: event.beta || 0,
+                            gamma: event.gamma || 0
+                        };
+                    } catch (orientationError) {
+                        console.warn('Device orientation error:', orientationError);
+                    }
+                }, { passive: true });
+
+                return true;
+            } catch (error) {
+                console.error('Device orientation initialization failed:', error);
+                return false;
+            }
         }
 
         // Finish capture and process panorama
@@ -940,8 +1019,24 @@
         window.addEventListener('error', (e) => {
             console.error('App error:', e.error);
             if (appState.currentScreen === 'capture') {
-                alert('An error occurred. Returning to main menu.');
-                startNew();
+                // Show user-friendly error message
+                setTimeout(() => {
+                    alert('An error occurred. Returning to main menu.');
+                    startNew();
+                }, 100);
+            }
+        });
+
+        // Handle unhandled promise rejections
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled promise rejection:', e.reason);
+            e.preventDefault(); // Prevent browser default error handling
+            
+            if (appState.currentScreen === 'capture') {
+                setTimeout(() => {
+                    alert('An error occurred. Returning to main menu.');
+                    startNew();
+                }, 100);
             }
         });
 
